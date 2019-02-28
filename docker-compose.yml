@@ -1,0 +1,30 @@
+version: '3'
+services:
+    swagger-ui:
+        container_name:
+            swagger-ui
+        image: 
+            swaggerapi/swagger-ui
+        ports:
+            #網站對應的網址。目前是直接對應實體機的80 port
+            #若要對應實體機的8080 port，要改為 - 8080:80
+            - 9088:8080
+        volumes:
+            #- ./mnt:/mnt
+            - ./swagger.json:/swagger.json
+        environment:
+            SWAGGER_JSON: /swagger.json
+            #API_URL: "swagger.json"
+
+        #environment:
+            #- SWAGGER_JSON=./swagger.json
+        #volumes: ["./swagger.json:/usr/share/nginx/html/swagger.json"]
+        #restart: always
+
+    swagger-editor:
+        container_name:
+            swagger-editor
+        image: 
+            swaggerapi/swagger-editor
+        ports:
+            - 9090:8080
